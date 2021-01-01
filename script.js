@@ -32,7 +32,7 @@ const showError = (error) =>{
 
 const getUserEmailAndPassword =() => ({
     email: document.querySelector('#email').Value,
-    password: document.querySelector('#passwrord').value,
+    password: document.querySelector('#password').value,
 });
 
 const createUserAccount = () => {
