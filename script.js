@@ -1,5 +1,6 @@
 const signInForm = document.querySelector('#sign-in-form');
 const signedInContent = document.querySelector('#signed-in-content');
+const signOutButton = document.querySelector('#sign-out');
 
 const showSignedInContent = () => {
     signInForm.style.display = 'none';
@@ -30,8 +31,8 @@ const showError = (error) =>{
     }, 5000)
 };
 
-const getUserEmailAndPassword =() => ({
-    email: document.querySelector('#email').Value,
+const getUserEmailAndPassword = () => ({
+    email: document.querySelector('#email').value,
     password: document.querySelector('#password').value,
 });
 
@@ -41,9 +42,9 @@ const createUserAccount = () => {
     firebase.auth().createUserWithEmailAndPassword(email, password);
 };
 
-const handleErrorSignIn = (error) =>{
-    switch (error.code){
-        case 'auth/user=not=found':
+const handleErrorSignIn = (error) => {
+    switch (error.code) {
+        case 'auth/user-not-found':
             createUserAccount();
             break;
         case 'auth/wrong-password':
@@ -55,15 +56,20 @@ const handleErrorSignIn = (error) =>{
 };
 
 
-const handleSubmitSignInForm = (event) =>{
-    const{ email, password} = getUserEmailAndPassword();
+const handleSubmitSignInForm = (event) => {
+    const{ email, password } = getUserEmailAndPassword();
     firebase
         .auth()
-        .signInWithEmailAndPassword(email,password)
+        .signInWithEmailAndPassword(email, password)
         .catch(handleErrorSignIn);
     
         event.preventDefault();
 };
 
+const signOut = () => {
+    firebase.auth().signOut();
+}
+
 firebase.auth().onAuthStateChanged(handleAuthChanged);
 signInForm.addEventListener('submit', handleSubmitSignInForm);
+signOutButton.addEventListener('click', signOut);

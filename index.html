@@ -3,8 +3,19 @@
     <head>
         <title>Todo test app</title>
         <meta charset="utf-8"/>
+
+        <style>
+            #error-box{
+                background: rgb(255, 54, 54);
+                color: white;
+            }
+        </style>
     </head>
     <body>
+        <div id="error-box">
+
+        </div>
+        
         <form id="sign-in-form">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required />
@@ -14,12 +25,14 @@
         </form>
         <div id=signed-in-content>
             <h1>Witaj</h1>
+            <button id="sign-out">Wyloguj</button>
         </div>
              
         
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-
+        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+        
         <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
